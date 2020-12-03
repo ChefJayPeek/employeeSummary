@@ -66,7 +66,7 @@ function addMember() {
     });
 }
 function createEngineer() {
-    inpuirer.prompt([
+    inquirer.prompt([
         {
             type: "input",
             name: "name",
@@ -89,7 +89,7 @@ function createEngineer() {
         }
     ]).then(function (answers) {
         const engineer = new Engineer(answers.name, parseInt(answers.id), answers.email, answers.github);
-        teamMemebers.push(engineer);
+        teamMembers.push(engineer);
         addMember();
     });
 }
