@@ -14,12 +14,6 @@ const OUTPUT_DIR = path.resolve(__dirname, "output");
 const outputPath = path.join(OUTPUT_DIR, "team.html");
 
 
-// delete the below lines when working
-// const managerCard = require("./templates/managerhtml");
-// const engineerCard = require("./templates/engineerhtml");
-// const internCard = require("./templates/internhtml");
-// // sanity check const mainHTML = require("./templates/mainHTML");
-
 const teamMembers = [];
 // Use inquirer to begin getting input from user
 
@@ -90,7 +84,7 @@ function addMember() {
             createIntern();
         }
         else {
-            //render(teamMembers);
+            // Make the HTML file and output it
             const file = path.join(__dirname, "output", "/team.html");
                 fs.writeFileSync(file, render(teamMembers));
             
@@ -137,7 +131,6 @@ function createEngineer() {
         }
     ]).then(function (answers) {
         const engineer = new Engineer(answers.name, answers.id, answers.email, answers.github);
-        // const engineerCardHtml = engineerCard(engineer);
         teamMembers.push(engineer);
         addMember();
     });
@@ -183,21 +176,10 @@ function createIntern() {
         }
     ]).then(function(answers) {
         const intern = new Intern(answers.name, answers.id, answers.email, answers.school);
-        //const internCardHtml = internCard(intern);
         teamMembers.push(intern);
         addMember();
     });
-    
-    // Create the team HTML document
-    // function buildTeam() {
-    //     const team = teamMembers.join("");
-    //     fs.writeFileSync(outputPath, mainHTML(team), "utf-8");
-    // }
 };
-// Create the team HTML document
-// function buildTeam() {
-//     const team = teamMembers.join("");
-//     fs.writeFileSync(outputPath, mainHTML(team), "utf-8");
-// }    
+
 module.exports = teamMembers
 createManager();
