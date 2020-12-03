@@ -17,7 +17,7 @@ const outputPath = path.join(OUTPUT_DIR, "team.html");
 const teamMembers = [];
 // Use inquirer to begin getting input from user
 
-// Creating Manager
+// createManager to gather manager data, with basic input validation and push to teamMembers array
 function createManager() {
     inquirer.prompt([
         {
@@ -58,7 +58,6 @@ function createManager() {
         }
     ]).then(function (answers) {
         const manager = new Manager(answers.name, answers.id, answers.email, answers.officeNumber,);
-        // const managerCardHtml = managerCard(manager);
         teamMembers.push(manager);
         addMember();
     });
@@ -84,13 +83,15 @@ function addMember() {
             createIntern();
         }
         else {
-            // Make the HTML file and output it
+            // Make the HTML file from the teamMembers array and output it
             const file = path.join(__dirname, "output", "/team.html");
                 fs.writeFileSync(file, render(teamMembers));
             
         };
     });
 }
+// createEngineer to gather engineer data, with basic input validation and push to teamMembers array
+
 function createEngineer() {
     inquirer.prompt([
         {
@@ -135,7 +136,7 @@ function createEngineer() {
         addMember();
     });
 }
-
+// createIntern to gather intern data, with basic input validation and push to teamMembers array
 function createIntern() {
     inquirer.prompt([
         {
